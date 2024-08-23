@@ -4,7 +4,7 @@ About
 -----
 
 FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X 
--This version retains the fixes mindhuntr made to Dl1337x and adds my littleredrooster script, which checks if a selected file from tordl is already avail on AllDebrid. If the file is already avail, littleredrooster will streams it through mpv.
+-This version retains the fixes mindhuntr made to Dl1337x and adds my littleredrooster script, which checks if a selected file from tordl is already avail on AllDebrid. If the file is already avail, littleredrooster will stream it through mpv.
 
 This is a hobby, I've enjoyed tordl for a while now and am using it as a platform to learn and sharpen my beak.
 You can use both tordl and littleredrooster as standalone command line interactions, though tbh tordl is the star of this show. 
