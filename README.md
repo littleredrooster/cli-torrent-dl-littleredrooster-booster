@@ -35,7 +35,9 @@ default) through command line.
 -----
 
 Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if it's avail to instant stream from AllDebrid). 
+
 <p></p>
+
 **NOTE:
 _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
 -The log file and your API key MUST BOTH be manually configured in the littleredrooster script, 
