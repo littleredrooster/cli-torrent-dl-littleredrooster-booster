@@ -5,15 +5,13 @@ FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https
 
 This is a hobby, I've enjoyed tordl for a while now and am using it as a platform to learn and sharpen my beak.
 You can use both tordl and littleredrooster as standalone command line interactions, though tbh tordl is the star of this show. 
-But, with tordl+littleredrooster, imo it brings everything together.
+But, with tordl+littleredrooster, imo it brings everything together with little as this script does. 
 
-As of writing this, I haven't altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below. That being said, my contribution will primarily be littleredrooster; as insignifigant as it is. 
+As of writing this, I haven't really altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below, though it's sparse and I'd liek to add to it later. 
+That being said, my contribution will primarily be littleredrooster; as insignifigant as it is. I will say, I have altered the config file to use littleredrooster by default when selecting content in tordl.
 
 
 This is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
-
-
-
 
 
 About
@@ -21,9 +19,9 @@ About
 
 
 **LITTLE RED ROOSTER BOOSTER** 
-(an avian themed friend for tordl)
+(an avian themed friend packaged with tordl)
 
-Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not.
+Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if it's avail to instant stream from AllDebrid).
 
 **NOTE:
 _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
@@ -38,15 +36,15 @@ or else littleredrooster won't do the thing._**
 
 1. Once you find the torrent you want with tordl, press enter to select it from within the tordl cli interface.
 
-2. tordl will then invoke littleredrooster, which will use the magnet link from tordl to check if that file is already avail to instant stream from AllDebrid right away. 
+2. tordl will then invoke littleredrooster, which will open a terminal where littleredrooster will use the magnet link from tordl to check if that file is already avail to instant stream from AllDebrid right away. 
 
-3. If the file is already avail for instant streaming, AllDebrid returns a streaming link and asks if the user would like to b'gawk the jawn.
+4. If the file is already avail for instant streaming, AllDebrid returns a streaming link and asks if the user would like to b'gawk the jawn.
 
-4. If the user selects `y` to b'gawk the jawn, then liitleredrooster will automatically open mpv and begin b'gawk-in. 
+5. If the user selects `y` to b'gawk the jawn, then liitleredrooster will automatically open mpv and begin b'gawk-in. 
 
-5. If the user selects `n` to NOT b'gawk the jawn, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to check if you can instant stream the file right away.
+6. If the user selects `n` to NOT b'gawk the jawn, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to check if you can instant stream the file right away.
 
-6. If the file is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
+7. If the file is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
 
 
