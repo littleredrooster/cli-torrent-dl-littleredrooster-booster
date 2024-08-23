@@ -14,7 +14,7 @@ As of writing this, I haven't really altered tordl at all... yet.. Probably firs
 That being said, my contribution will primarily be littleredrooster; as insignifigant as it is. I will say, I have altered the config file to use littleredrooster by default when selecting content in tordl.
 
 
-This is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
+littleredrooster is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
 
 
 <p></p>
