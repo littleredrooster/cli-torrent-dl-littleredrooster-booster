@@ -4,14 +4,14 @@ About
 -----
 
 FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X 
--This version retains the fixes mindhuntr made to Dl1337x).
+-This version retains the fixes mindhuntr made to Dl1337x and adds my littleredrooster script, which checks if a selected file from tordl is already avail on AllDebrid. If the file is already avail, littleredrooster will streams it through mpv.
 
 This is a hobby, I've enjoyed tordl for a while now and am using it as a platform to learn and sharpen my beak.
 You can use both tordl and littleredrooster as standalone command line interactions, though tbh tordl is the star of this show. 
 But, with tordl+littleredrooster, imo it brings everything together with little as this script does. 
 
 As of writing this, I haven't really altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below, though it's sparse and I'd like to add to it later. 
-That being said, my contribution will primarily be littleredrooster; as insignifigant as it is. I will say, I have altered the config file to use littleredrooster by default when selecting content in tordl.
+That being said, my contribution will primarily be littleredrooster. I will say, I have altered the config file for tordl to use littleredrooster by default when selecting a file.
 
 
 littleredrooster is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
@@ -38,10 +38,10 @@ Little Red Rooster Booster is extremenly simple and has absolutely no interactio
 
 <p></p>
 
-**NOTE:
+**NOTE:**
 _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
 -The log file and your API key MUST BOTH be manually configured in the littleredrooster script, 
-or else littleredrooster won't do the thing._**
+or else littleredrooster won't do the thing._
 
 **LIMITATIONS**
 
@@ -60,7 +60,7 @@ littleredrooster is dumb and simple like a little rooster. It's such a simple sc
 
 5. If the user selects `y` to b'gawk the jawn, then liitleredrooster will automatically open mpv and begin b'gawk-in. 
 
-6. If the user selects `n` to NOT b'gawk the jawn, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to check if you can instant stream the file right away.
+6. If the user selects `n` to NOT b'gawk the jawn, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to check if you can instant stream the file right away. 
 
 7. If the file is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
@@ -69,10 +69,10 @@ littleredrooster is dumb and simple like a little rooster. It's such a simple sc
 
 **FUTURE PLANS:**
 
-I would like to eventually add an interaction where; if the file is unavail on AllDebrid already for instant stream, littleredrooster would ask if you'd like to add the magnet link anyhow to your AllDebrid account so AllDebrid can download it. However, I don't think that's worth it. 
+I would like to eventually add an interaction where; if the file is unavail on AllDebrid already for instant stream, littleredrooster would ask if you'd like to add the magnet link anyhow to your AllDebrid account, so AllDebrid can download it. However, I don't think that's worth it. 
 This is because, I want to add more sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. 
 A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection -even though it's easier). 
-
+I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
 
 
 
@@ -143,7 +143,9 @@ Opening magnet links in your preferred torrent client will not work, of course.
 ### Little Red Rooster Booster
 
 1. place the littleredrooster file in your `/usr/local/bin` folder
+
 2. Place the `littleredrooster.log` file wherever you're going to place it.
+
 3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
  - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
  - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
@@ -159,7 +161,7 @@ Usage
 
 ### CLI
 
-**LITTLEREDROOSTER SPECIFIC:** 
+**LITTLEREDROOSTER SPECIFIC** 
 <p></p>
 Invoke littleredrooster manually:
 
