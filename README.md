@@ -34,7 +34,7 @@ default) through command line.
 **LITTLE RED ROOSTER BOOSTER** 
 -----
 
-Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if it's avail to instant stream from AllDebrid). 
+Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if the file provided by tordl is already present on AllDebrid). 
 
 <p></p>
 
