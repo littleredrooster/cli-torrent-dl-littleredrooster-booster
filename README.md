@@ -1,5 +1,8 @@
 **tordl+littleredrooster**
 
+About
+-----
+
 FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X 
 -This version retains the fixes mindhuntr made to Dl1337x).
 
@@ -14,25 +17,34 @@ That being said, my contribution will primarily be littleredrooster; as insignif
 This is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
 
 
-About
+<p></p>
+<p></p>
+
+
+**TORDL**
 -----
 
+tordl provides convenient and quick way to search torrent magnet links (and run
+preferred torrent client) via major torrent sites (ThePirateBay, LimeTorrents,
+Zooqle, 1337x, GloTorrents, KickAssTorrents, SolidTorrents, BTDB, TGx, Nyaa by
+default) through command line. 
+
+
+<p></p>
 
 **LITTLE RED ROOSTER BOOSTER** 
 (an avian themed friend packaged with tordl)
+-----
 
 Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if it's avail to instant stream from AllDebrid).
-
+<p></p>
 **NOTE:
 _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
 -The log file and your API key MUST BOTH be manually configured in the littleredrooster script, 
 or else littleredrooster won't do the thing._**
 
-=======
-
-
-
-**HOW IT WORKS:**
+**HOW IT ALL WORKS:**
+----
 
 1. Once you find the torrent you want with tordl, press enter to select it from within the tordl cli interface.
 
@@ -46,7 +58,8 @@ or else littleredrooster won't do the thing._**
 
 7. If the file is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
-
+<p></p>
+<p></p>
 
 **FUTURE PLANS:**
 
@@ -55,52 +68,8 @@ This is because, I want to add more sources/ search engines to tordl so the expe
 A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection -even though it's easier). 
 
 
-=======
 
 
-**INSTALLATION OF LITTLE RED ROOSTER BOOSTER:**
-
-1. place the littleredrooster file in your `/usr/local/bin` folder
-2. Place the `littleredrooster.log` file wherever you're going to place it.
-3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
- - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
- - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
- - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
-
-
-
-littleredrooster can also be invoked manually with:
-
-`littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
-
-OR
-
-`usr/local/bin/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
-
-
-
-
-
-========
-========
-========
-========
-
-
-
-**TORDL**
-
-tordl provides convenient and quick way to search torrent magnet links (and run
-preferred torrent client) via major torrent sites (ThePirateBay, LimeTorrents,
-Zooqle, 1337x, GloTorrents, KickAssTorrents, SolidTorrents, BTDB, TGx, Nyaa by
-default) through command line.
-
-
-
-tordl provides convenient and quick way to search torrent magnet links (and run
-preferred torrent client) via major torrent sites (ThePirateBay, LimeTorrents,
-Zooqle, 1337x, GloTorrents, KickAssTorrents, SolidTorrents, BTDB, TGx, Nyaa by
-default) through command line.
 
 Table of Contents
 -----------------
@@ -126,6 +95,10 @@ Table of Contents
     * [RPC Client](#rpc-client)
 * [JSON Output Format](#json-output-format)
 * [Creating Custom Search Engines](#creating-custom-search-engines)
+
+
+
+
 
 Installation
 ------------
@@ -157,10 +130,40 @@ Opening magnet links in your preferred torrent client will not work, of course.
 
     $ docker run -p 57000:57000 -it tordl -s
 
+
+### Little Red Rooster Booster
+
+1. place the littleredrooster file in your `/usr/local/bin` folder
+2. Place the `littleredrooster.log` file wherever you're going to place it.
+3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
+ - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
+ - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
+ - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
+
+
+
+
+
 Usage
 -----
 
+
 ### CLI
+
+**LITTLEREDROOSTER SPECIFIC:** 
+<p></p>
+Invoke littleredrooster manually:
+
+`littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
+
+OR
+
+`usr/local/bin/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
+
+<p></p>
+<p></p>
+
+**TORDL SPECIFIC**
 
 Run search from command line:
 
