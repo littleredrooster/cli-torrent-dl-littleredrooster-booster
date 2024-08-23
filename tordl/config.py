@@ -13,7 +13,7 @@ CFG_HISTORY_FILE = os.path.join(CFG_DIR, 'search_history.txt')
 
 SEARCH_ENGINES = ['1337x', 'Glo', 'KAT', 'Lime', 'Nyaa',  'TGx', 'TPB']
 
-TORRENT_CLIENT_CMD = 'qbittorrent %s'
+TORRENT_CLIENT_CMD = 'konsole -e littleredrooster %s'
 
 HISTORY_MAX_LENGTH = 100
 PAGE_NUM_DOWNLOAD = 1
