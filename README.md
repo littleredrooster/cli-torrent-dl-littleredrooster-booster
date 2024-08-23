@@ -46,7 +46,7 @@ or else littleredrooster won't do the thing._**
 **LIMITATIONS**
 -----
 
-littleredrooster is dumb and simple like a little rooster. It's such a simple script, that you can only play one file at a time right now. Seasons of shows packaged into one magnet link will be added to your AllDebrid account, but littleredrooster won't automatically play through all of the episodes, just the first video file it grabs from the "links" array in the json output from the API response. Being able to run whole seasons of shows link by link automatically, or select specific episodes will be something I'll add pretty soon.
+littleredrooster is dumb and simple like a little rooster. It's such a simple script, that you can only play one file at a time right now. Seasons of shows packaged into one magnet link WILL be added to your AllDebrid account regaurdless, but littleredrooster won't automatically play through all of the episodes, just the first video file it grabs from the "links" array in the json output from the API response. Being able to run whole seasons of shows link by link automatically, or select specific episodes will be something I'll add pretty soon.
 
 
 **HOW IT ALL WORKS:**
