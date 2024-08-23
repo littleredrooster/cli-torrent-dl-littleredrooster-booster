@@ -30,10 +30,8 @@ Zooqle, 1337x, GloTorrents, KickAssTorrents, SolidTorrents, BTDB, TGx, Nyaa by
 default) through command line. 
 
 
-<p></p>
 
 **LITTLE RED ROOSTER BOOSTER** 
-(an avian themed friend packaged with tordl)
 -----
 
 Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if it's avail to instant stream from AllDebrid).
