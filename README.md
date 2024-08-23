@@ -164,7 +164,7 @@ Invoke littleredrooster manually:
 
 OR
 
-`usr/local/bin/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
+`/path/to/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
 
 <p></p>
 <p></p>
