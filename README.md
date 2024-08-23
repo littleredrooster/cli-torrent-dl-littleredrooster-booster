@@ -49,7 +49,7 @@ littleredrooster is dumb and simple like a little rooster. It's such a simple sc
 
 
 
-**HOW IT ALL WORKS:**
+**HOW IT ALL WORKS**
 ----
 
 1. Once you find the torrent you want with tordl, press enter to select it from within the tordl cli interface.
@@ -67,43 +67,13 @@ littleredrooster is dumb and simple like a little rooster. It's such a simple sc
 <p></p>
 <p></p>
 
-**FUTURE PLANS:**
+**FUTURE PLANS**
 
 I would like to eventually add an interaction where; if the file is unavail on AllDebrid already for instant stream, littleredrooster would ask if you'd like to add the magnet link anyhow to your AllDebrid account, so AllDebrid can download it. However, I don't think that's worth it. 
 This is because, I want to add more sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. 
+<p></p>
 A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection -even though it's easier). 
 I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
-
-
-
-
-Table of Contents
------------------
-
-* [Installation](#installation)
-  * [Prerequisites](#prerequisites)
-  * [Setup](#setup)
-* [Config](#config)
-* [Docker](#docker)
-  * [Build](#build)
-  * [Run JSON RPC Server](#run-json-rpc-server)
-* [Usage](#usage)
-  * [CLI](#cli)
-  * [Modes](#modes)
-    * [API Mode](#api-mode)
-    * [Browse Mode](#browse-mode)
-      * [Search](#search)
-      * [Search Engine Selection](#search-engine-selection)
-    * [I'm Feeling Lucky Mode](#im-feeling-lucky-mode)
-    * [Test Mode](#test-mode)
-  * [RPC](#rpc)
-    * [RPC Server](#rpc-server)
-    * [RPC Client](#rpc-client)
-* [JSON Output Format](#json-output-format)
-* [Creating Custom Search Engines](#creating-custom-search-engines)
-
-
-
 
 
 Installation
@@ -116,15 +86,25 @@ Installation
 * jq (littleredrooster)
 * mpv (littleredrooster)
 
-### Setup
+### tordl
 
-    $ ./setup.sh
-
-Config
-------
+       $ ./setup.sh
 
 Edit `~/.config/torrentdl/config.json` to customize your preferred torrent 
 client (default is littleredrooster).
+
+### littleredrooster
+
+1. place the littleredrooster file in your `/usr/local/bin` folder
+
+2. Place the `littleredrooster.log` file wherever you're going to place it.
+
+3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
+ - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
+ - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
+ - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
+
+
 
 Docker
 ------
@@ -138,20 +118,6 @@ Opening magnet links in your preferred torrent client will not work, of course.
 ### Run JSON RPC Server
 
     $ docker run -p 57000:57000 -it tordl -s
-
-
-### Little Red Rooster Booster
-
-1. place the littleredrooster file in your `/usr/local/bin` folder
-
-2. Place the `littleredrooster.log` file wherever you're going to place it.
-
-3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
- - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
- - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
- - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
-
-
 
 
 
