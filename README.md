@@ -112,6 +112,9 @@ Installation
 ### Prerequisites
 
 * Python 3.8+
+* curl (littleredrooster)
+* jq (littleredrooster)
+* mpv (littleredrooster)
 
 ### Setup
 
@@ -121,7 +124,7 @@ Config
 ------
 
 Edit `~/.config/torrentdl/config.json` to customize your preferred torrent 
-client (default is qbittorent).
+client (default is littleredrooster).
 
 Docker
 ------
