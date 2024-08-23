@@ -10,7 +10,7 @@ This is a hobby, I've enjoyed tordl for a while now and am using it as a platfor
 You can use both tordl and littleredrooster as standalone command line interactions, though tbh tordl is the star of this show. 
 But, with tordl+littleredrooster, imo it brings everything together with little as this script does. 
 
-As of writing this, I haven't really altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below, though it's sparse and I'd liek to add to it later. 
+As of writing this, I haven't really altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below, though it's sparse and I'd like to add to it later. 
 That being said, my contribution will primarily be littleredrooster; as insignifigant as it is. I will say, I have altered the config file to use littleredrooster by default when selecting content in tordl.
 
 
