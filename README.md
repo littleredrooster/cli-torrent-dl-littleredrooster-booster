@@ -95,14 +95,24 @@ client (default is littleredrooster).
 
 ### littleredrooster
 
-1. place the littleredrooster file in your `/usr/local/bin` folder
+1. Place the littleredrooster file in your `/usr/local/bin` folder
 
 2. Place the `littleredrooster.log` file wherever you're going to place it.
 
-3. Configure the littleredrooster file you moved to the `/usr/local/bin` folder with the text editor of your choice.
- - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
- - Make sure the path to the `littleredrooster.log` file is correct on line 3 of the script.
- - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
+3. EDIT THE TORDL CONFIG TO USE YOUR TERMINAL:
+   <p></p>
+   By default torld will execute `konsole -e littleredrooster %s`, when a file is selected.
+   You MUST change `konsole` to whatever termial you use.
+
+5. Configure the littleredrooster file with the text editor of your choice:
+   <p></p>
+   - Put your API key in the 4 spots labeled: `YOUR_API_KEY`.
+   <p></p>
+   - Make sure the path to the `littleredrooster.log` file is correct on line 4 of the script.
+   <p></p>
+   - Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
+
+
 
 
 
