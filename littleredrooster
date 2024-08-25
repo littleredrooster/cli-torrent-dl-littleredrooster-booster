@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Redirect all output (including error messages) to the log file
+# Log file and output
 exec &> >(tee /home/agent/littleredrooster.log)
 
-# Retrieve the magnet link from the command-line argument
+# Retrieve the magnet link
 magnet_link="$1"
 
 # Log the received magnet link
@@ -11,35 +11,35 @@ echo "Received magnet link:
 $magnet_link
 "
 
-# Check instant availability
+# API check for AllDebrid instant avail
 instant_response=$(curl -s -G --data-urlencode "magnets[]=$magnet_link" "https://api.alldebrid.com/v4/magnet/instant?agent=myAppName&apikey=YOUR_API_KEY" 2>&1)
 
-# Log the full Alldebrid API response for the instant availability check
+# API response for instant avail check
 echo "Alldebrid API response for instant availability check:
 $instant_response
 "
-# Extract the download id from the magnet upload
+# Instant avail truse/ false
 instant_bool=$(echo $instant_response | jq -r '.data.magnets[0].instant')
 
 
-# Log the extracted download ID
+# Log the Instant avail status
 echo "AllDebrid:
 $instant_bool
 "
 
-# Check if the file is instantly available
+# If jawn is available
 if $(echo "$instant_response" | jq -r '.data.magnets[0].instant') = "true"; then
 
 
-    # Use curl to upload the magnet link to Alldebrid via API v4
+    # Use curl to upload the magnet link to Alldebrid
     upload_response=$(curl -s -X POST -F "magnets[]=$magnet_link" "https://api.alldebrid.com/v4/magnet/upload?agent=script_uploader&apikey=YOUR_API_KEY" 2>&1)
 
-    # Log the full Alldebrid API response for the magnet link upload
+    # API response for the magnet link upload
     echo "Alldebrid API response for magnet link upload:
     $upload_response
     "
 
-    # Extract the download ID from the magnet upload API response
+    # Extract the download ID from magnet link upload
     download_id=$(echo $upload_response | jq -r '.data.magnets[0].id')
 
     # Log the extracted download ID
@@ -47,39 +47,135 @@ if $(echo "$instant_response" | jq -r '.data.magnets[0].instant') = "true"; then
     $download_id
     "
 
-    # Use the download ID to fetch the file URL
-    file_response=$(curl -s -G --data-urlencode "id=$download_id" "https://api.alldebrid.com/v4/magnet/status?agent=myAppName&apikey=YOUR_API_KEY" 2>&1)
 
-    # Log the full Alldebrid API response for the file URL
-    echo "Alldebrid API response for file URL:
-    $file_response
-    "
+###
+# Use the download ID to fetch the file info json
+file_response=$(curl -s -G --data-urlencode "id=$download_id" "https://api.alldebrid.com/v4/magnet/status?agent=myAppName&apikey=YOUR_API_KEY" 2>&1)
 
-    # Extract the file URL from the file response
-    file_url=$(echo "$file_response" | jq -r '.data.magnets.links | map(select(.files[].n | test("\\.(mp4|mkv|mov|avi)$"))) | .[0].link')
+# API response for the file json
+echo "Alldebrid API response for file URL:"
+echo "$file_response
 
-    # Log the extracted file URL
-    echo "Extracted file URL:
-    $file_url
-    "
 
-    # Use file URL to fetch streaming URL
-    streaming_response=$(curl -G --data-urlencode "link=$file_url" "https://api.alldebrid.com/v4/link/unlock?agent=myAppName&apikey=YOUR_API_KEY" 2>&1)
 
-    # Log the full Alldebrid API response for the file URL
-    echo "AllDebrid API response for file URL:
-    $streaming_response
-    "
 
-    # Extract the streaming url from the file url
+
+
+
+
+
+
+
+
+
+"
+
+# Filter out non video jawns from the json
+file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))
+
+
+
+# parse file names for jawn selection
+join_file_name() {
+    local file_name=$1
+    # Store each line of the file name into an array
+    local file_name_array=($(echo "$file_name" | tr '\n' ' '))
+    # Join array elements to form the final file name
+    local joined_file_name="$(printf "%s " "${file_name_array[@]}")"
+    echo "$joined_file_name"
+}
+
+
+
+
+
+echo -e "
+\e[31m
+⠀⠀              ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡦⣤⣤⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀              ⠀⠀⠀⠀⣀⡤⣴⣶⠞⠋⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠈⠉⠉⠙⠻⢿⣿⣗⡢⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+              ⠀⠀⠀⣠⢊⣵⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⢭⣳⣮⣳⣄⠀⠀⠀⠀⠀⠀⠀
+⠀              ⠀⣼⣿⠏⠀        ⠀'Hey, you. ⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣮⡙⢷⡄⠀⠀⠀⠀⠀
+⠀              ⣼⡿⠁⠀⠀ ⠀    You're finally awake.⠀⠀⠀⠈⠻⣟⢦⠙⢦⡀⠀⠀⠀
+              ⠀⣿     You were trying to             ⠈⢯⡳⣄⢻⢦⠀⠀
+              ⢸⡟        cross the border,right?⠀      ⠹⣾⣾⡄⢳⠀
+              ⢸⡇⠀⠀  ⠀⠀    ⠀⠀Walked right into that⠀⠀ ⠀⠀⢻⣻⡇⠀⡇
+              ⢸⣿⡄                  Imperial ambush   ⠀⠀⠀⣿⡗⠀⣿
+              ⠀⢧⠹⡄         -same as us, and that      ⠀⢀⣾⡇⠀⡏
+⠀              ⠈⢢⣘⢢⡀         ⠀ thief over there.'    ⢠⣾⡟⠀⡼⠁
+              ⠀⠀⠀⠙⠷⡻⠶⣄⡀⠀                            ⣰⣿⢟⡤⠞⠁⠀
+⠀              ⠀⠀⠀⠀⠈⠒⠤⣉⣛⢷⣒⠦⠤⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⡯⠕⠋⠀⠀⠀⠀
+               ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠛⠛⠛⠛⣿⡿⢀⣴⣶⣶⣶⣶⣶⣶⣚⣛⣿⣿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⢠⣾⣽⡿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀        ⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣤⣴⣿⣧⣴⡆⠀⠀
+        ⠀⠀⠀⠀⠠⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢿⠟⢋⣡⢌⠉⠉⠀⠀⠀
+            ⠀⠀⠀⠙⢿⣿⣷⣦⢰⣧⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣷⠺⠿⢷⡀⠀⠀
+        ⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⠐⣶⡀⠀⠀⠀
+        ⠀⠀⠁⣠⠶⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⢀⣼⣿⣿⣦⣈⡁⠀⠀⠀
+        ⠀⠀⠀⠀⢠⣾⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⠀⡾⠿⢿⣿⢿⣿⣿⣷⠀⠀⠀
+    ⠀    ⠀⠀⠀⠘⠁⣴⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣤⡄⠘⢁⠘⠏⣁⠛⠀⠀⠀
+           ⠀⠀⠀⠀⠀⠀⡿⠁⢾⡟⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣷⣴⣿⡄⣴⣿⠀⠀⠀⠀
+    ⠀          ⠀⠀⠀⠀⠀⠘⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀
+    ⠀               ⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀
+             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣠⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄⠀
+
+\e[0m"
+
+
+
+# List header
+your_text="\033[1m\033[4mExtracted jawn(s):\033[0m"
+terminal_width=$(tput cols)
+plain_text="Extracted jawn(s):"
+text_length=${#plain_text}
+padding=$(( (terminal_width - text_length) / 2 ))
+printf "%*s" $padding ""
+echo -e "$your_text"
+
+
+# Line Break
+echo "
+"
+
+# List of jawns
+
+index=1
+for ((i = 0; i < ${#file_urls[@]}; i++)); do
+    file_name=$(echo "$file_response" | jq -r ".data.magnets.links[$i].filename")
+    joined_file_name=$(join_file_name "$file_name")
+    echo -e "    \033[1m\033[5m$index\033[0m. $joined_file_name"
+    echo
+    ((index++))
+done
+
+# Prompt the user to select a jawn by index
+BOLD='\033[1m'
+NORMAL='\033[0m'
+echo -e "${BOLD}Select yer jawn farmer:${NORMAL}"
+read -p " " selected_index
+selected_url="${file_urls[$(($selected_index - 1))]}"
+
+
+# Use the selected jawn URL to fetch the streaming URL
+streaming_response=$(curl -G --data-urlencode "link=$selected_url" "https://api.alldebrid.com/v4/link/unlock?agent=myAppName&apikey=YOUR_API_KEY" 2>&1)
+
+# API response for the streaming URL
+echo "AllDebrid API response for streaming URL:"
+echo "$streaming_response"
+
+    # Extract the streaming url from the jawn url
     streaming_url=$(echo "$streaming_response" | grep -Pzo "(?s)\{.*" | jq -r '.data.link')
 
-    # Log the extracter streaming URL
+    # Log the extracted streaming URL
     echo "Extracted streaming URL:
     $streaming_url"
 
 
-    # Get user input
+    # User selected jawn
     echo -e "
 
 
@@ -102,60 +198,74 @@ if $(echo "$instant_response" | jq -r '.data.magnets[0].instant') = "true"; then
 
 
 
-
-
-
-
-
-
-
-
-'Hey, you. You're finally awake.
-You were trying to cross the border, right?
-Walked right into that Imperial ambush,
-same as us, and that thief over there.'
 "
 
 
+echo -e "
 
-echo -e "\e[31m░░░░░░░░░░░░░░░░░░░░░░░░░░
-░░░░░░░░▄▀▀▄░░░░░░░░░░░░░
-░░░░░░▄▀▒▒▒▒▀▄░░░░░░░░░░░
-░░░░░░░▀▌▒▒▐▀░░░░░░░░░░░░
-░▄███▀░◐░░░▌░░░░░░░░░░░░░░
-░░░▐▀▌░░░░░▐░░░░░░░░░░▄▀▀▀▄▄
-░░▐░░▐░░░░░▐░░░░░░░░░█░▄█▀
-░░▐▄▄▌░░░░░▐▄▄░░░░░░█░░▄▄▀▀▀▀▄
-░░░░░░▌░░░░▄▀▒▒▀▀▀▀▄▀░▄▀░▄▄▄▀▀
-░░░░▐░░░░▐▒▒▒▒▒▒▒▒▀▀▄░░▀▄▄▄░▄
-░░░░▐░░░░▐▄▒▒▒▒▒▒▒▒▒▒▀▄░▄▄▀▀
-░░░░░▀▄░░░░▀▄▒▒▒▒▒▒▒▒▒▒▀▄
-░░░░░░░▀▄▄░░░█▄▄▄▄▄▄▄▄▄▄▄▀▄
-░░░░░░░░░░▀▀▄▄▄▄▄▄▄▄▀▀░
-░░░░░░░░░░░░▌▌░▌▌░░░
-░░░░░░░░░░▄▄▌▌▄▌▌
+
+
+\e[31m
+        ⠀⠀⠀⠀    ⠀⠀⠀     ⠀⠀⠀⢀⣠⣤⣤⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡦⣤⣤⣀⣀⣀⣀
+⠀⠀            ⠀⠀     ⠀⣀⡤⣴⣶⠞⠋⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠈⠉⠉⠙⠻⢿⣿⣗⡢⢤⣀
+⠀⠀⠀                 ⣠⢊⣵⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⢭⣳⣮⣳⣄
+    ⠀            ⠀⣼⣿⠏⠀ ⠀⠀                          ⠙⢿⣮⡙⢷⡄
+        ⠀        ⣼⡿⠁⠀ ⠀⠀⠀It's like I told ya-      ⠀ ⠈⠻⣟⢦⠙⢦⡀
+                ⠀⣿                  what I said...     ⠈⢯⡳⣄⢻⢦
+                ⢸⡟       Steal your face                 ⠹⣾⣾⡄⢳
+                ⢸⡇⠀        right off'uh your head         ⢻⣻⡇⠀⡇
+                ⢸⣿⡄                                      ⠀⣿⡗⠀⣿
+                ⠀⢧⠹⡄                                   ⠀⢀⣾⡇⠀⡏
+                ⠀⠈⢢⣘⢢⡀         ⠀                       ⢠⣾⡟⠀⡼⠁
+                ⠀⠀⠀⠙⠷⡻⠶⣄⡀⠀                            ⣰⣿⢟⡤⠞⠁
+        ⠀        ⠀⠀⠀⠀⠈⠒⠤⣉⣛⢷⣒⠦⠤⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⡯⠕⠋
+        ⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠛⠛⠛⠛⣿⡿⢀⣴⣶⣶⣶⣶⣶⣶⣚⣛⣿⣿⠿⠛⠋⠁
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀        ⠀⠀⢠⣾⣽⡿⠛⠁
+⠀    ⠀⠀⠀    ⠀⠀⠀⠀        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠿⠋
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃
+
+    ⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣤⣴⣿⣧⣴⡆
+        ⠀⠀⠀⠀⠠⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢿⠟⢋⣡⢌⠉⠉⠀
+            ⠀⠀⠀⠙⢿⣿⣷⣦⢰⣧⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣷⠺⠿⢷⡀
+        ⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⠐⣶⡀
+        ⠀⠀⠁⣠⠶⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⢀⣼⣿⣿⣦⣈⡁⠀
+        ⠀⠀⠀⠀⢠⣾⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⠀⡾⠿⢿⣿⢿⣿⣿⣷
+    ⠀    ⠀⠀⠀⠘⠁⣴⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣤⡄⠘⢁⠘⠏⣁⠛
+           ⠀⠀⠀⠀⠀⠀⡿⠁⢾⡟⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣷⣴⣿⡄⣴⣿
+    ⠀         ⠀⠀⠀⠀⠀⠘⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+    ⠀              ⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⡿⠟⠋⠁
+             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⠁
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣠⣆
+            ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄
+
 \e[0m"
+
+
+
+
 
 echo -e "
     Welcome to the Little Red Rooster Booster!
     Would you like to b'gawk this jawn now?
 
-    \033[1m\033[5m*peck*\033[0m (y/n) \033[1m\033[5m*peck*\033[0m
-    "
+    \033[1m\033[5m*peck*\033[0m (y/n) \033[1m\033[5m*peck*\033[0m"
     read user_response
 
     if [[ $user_response = "y" ]]; then
-        # Stream the download link using mpv
+        # Stream the jawn using mpv
         echo "
 
 
         All the pretty 'lil hens know my name!:
 
         $streaming_url"
+
+        # remove --really-quiet for verbose mpv output
         mpv -really-quiet "$streaming_url" 2>&1
         mpv_status=$?
 
-        # Log the mpv streaming status
+        # Log mpv status)
         echo "
 
 
@@ -163,6 +273,9 @@ echo -e "
         She layin' them eggs: $mpv_status"
 
     else
+
+
+        # Added to AllDebrid
 
         echo "
 
@@ -174,6 +287,8 @@ echo -e "
 
 else
 
+
+    # this means your magnet link is junk, pink a new one
     echo -e "
 
     \033[1m*buh'\033[0m\033[1m\033[3mGAAWWWWKKK*\033[0m
