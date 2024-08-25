@@ -81,7 +81,7 @@ or else littleredrooster won't do the thing._
 
 - littleredrooster can now select from multiple espisodes/ versions/ files within a torrent; but will close after that episode plays. So after each episode you have to select the torrent again and reselect the file, which is very quick to do, but an extra step... I am adding more robust episode selection features soon (Next, previous, replay, select from list, and keep the selection screens open after the file is done, etc).
 
-- Better filtering, only show mp4, avi, mv, mp3, wav etc etc etc.
+- Better filtering, such as only show mp4, avi, mkv, mp3, wav etc etc etc.
 
 <p></p>
 <p></p>
