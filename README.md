@@ -78,9 +78,7 @@ or else littleredrooster won't do the thing._
 
 
 
-
 ![Screenshot_20240825_173745](https://github.com/user-attachments/assets/5af60aa0-3d8c-4e73-8602-a38ea8cff89f)
-
 
 
 Installation
@@ -126,7 +124,7 @@ Currently written as (shows all files within a torrent):
 
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
 
-But I've been experimenting with: (works... but not always): 
+But I've been experimenting with (works... but not always): 
 
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
 
