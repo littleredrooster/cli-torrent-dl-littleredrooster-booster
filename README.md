@@ -6,7 +6,7 @@ About
 -----
 
 
--This version of tordl FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X -retains the fixes mindhuntr made to Dl1337x and adds my nifty littleredrooster script. You can use both tordl and littleredrooster as standalone command line interactions. 
+-This version of tordl FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X -retains the fixes mindhuntr made to Dl1337x and adds my nifty littleredrooster script. 
 
 This is a hobby, I've enjoyed tordl for a while now and am using it and littleredrooster as platforms to learn and sharpen my beak.
 As of writing this, I haven't really altered tordl at all... yet.. That being said, my contribution will primarily be littleredrooster.
