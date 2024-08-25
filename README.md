@@ -1,11 +1,17 @@
 **tordl+littleredrooster**
 
+![Screenshot_20240825_174119](https://github.com/user-attachments/assets/b5a353bf-348b-4106-b56b-f7e47cca99c1)
+
+
+
+
+
 
 About
 -----
 
-FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X 
--This version retains the fixes mindhuntr made to Dl1337x and adds my littleredrooster script. You can use both tordl and littleredrooster as standalone command line interactions.
+
+-This version of tordl FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X -retains the fixes mindhuntr made to Dl1337x and adds my nifty littleredrooster script. You can use both tordl and littleredrooster as standalone command line interactions. 
 
 This is a hobby, I've enjoyed tordl for a while now and am using it and littleredrooster as platforms to learn and sharpen my beak.
 As of writing this, I haven't really altered tordl at all... yet.. That being said, my contribution will primarily be littleredrooster.
@@ -30,7 +36,7 @@ default) through command line.
 **LITTLE RED ROOSTER BOOSTER** 
 -----
 
-Little Red Rooster Booster is extremenly simple. All it does is check if a selected torrent from tordl is already avail on AllDebrid. If the torrent is already avail, littleredrooster will ask which file you'd like to play from the torrent and streams it through mpv using your AllDebrid account.
+Little Red Rooster Booster checks if a selected torrent from tordl is already avail on AllDebrid. If the torrent is already avail, littleredrooster will ask which file you'd like to play from the torrent and streams it through mpv using your AllDebrid account.
 
 <p></p>
 
@@ -68,6 +74,14 @@ or else littleredrooster won't do the thing._
 
 <p></p>
 <p></p>
+
+
+
+
+
+![Screenshot_20240825_173745](https://github.com/user-attachments/assets/5af60aa0-3d8c-4e73-8602-a38ea8cff89f)
+
+
 
 Installation
 ------------
@@ -108,13 +122,13 @@ client (default is littleredrooster).
 
 **Filtering torrent files via exclusion: (line 73)**
 
-Currently written as (shows all files within a torrent):
+Currently written as (shows all files within a torrent): 
+
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
 
+But I've been experimenting with: (works... but not always): 
 
-But I've been experimenting with: (works... but not always):
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
-
 
 
 <p></p>
