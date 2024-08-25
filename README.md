@@ -1,7 +1,5 @@
 **tordl+littleredrooster**
 
-![Screenshot_20240825_174119](https://github.com/user-attachments/assets/b5a353bf-348b-4106-b56b-f7e47cca99c1)
-
 
 
 
