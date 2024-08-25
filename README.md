@@ -99,7 +99,7 @@ client (default is littleredrooster).
 
 4. Edit the tordl config:
    By default torld will execute `konsole -e littleredrooster %s`, when a file is selected.
-   You MUST change `konsole` in the tordle config.json to whatever termial you use.
+   You MUST change `konsole` in the tordl config.json to whatever termial you use.
 
 6. Configure the littleredrooster file:
    Put your API key in the 4 spots labeled: `YOUR_API_KEY`. Make sure the path to the `littleredrooster.log` file is
