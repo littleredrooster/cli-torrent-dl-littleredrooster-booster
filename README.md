@@ -106,15 +106,15 @@ client (default is littleredrooster).
    correct on line 4 of the script.
 
 
-**littleredroster filters files via exclusion: (line 73)**
+**Filtering torrent files via exclusion: (line 73)**
 
+Currently written as (shows all files within a torrent):
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
+
+
+But I've been experimenting with: (works... but not always):
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
 
-you can add to or remove from these extentions to get better control of returned files within a torrent. It isn't perfect, but it works most of the time.
-
-If you want to see ALL files withinin the torrents (no filters) use:
-
-`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
 
 
 <p></p>
