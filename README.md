@@ -1,6 +1,6 @@
 **tordl+littleredrooster**
 
-![Screenshot_20240825_180555](https://github.com/user-attachments/assets/676cbef7-b1c3-4236-a408-9632fedce318)
+
 
 About
 -----
@@ -48,11 +48,14 @@ or else littleredrooster won't do the thing._
 
 2. tordl will then invoke littleredrooster, which will open a terminal where littleredrooster will use the magnet link from tordl to check if that torrent is already avail to instant stream from AllDebrid right away. 
 
+![Screenshot_20240825_180555](https://github.com/user-attachments/assets/676cbef7-b1c3-4236-a408-9632fedce318)
+
+
 4. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
 
 ![Screenshot_20240825_181156](https://github.com/user-attachments/assets/c6b95aba-6403-47e8-897d-9a34e5994343)
 
-5. The user will then enter the number of for associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
+5. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
 
 ![Screenshot_20240825_173745](https://github.com/user-attachments/assets/2292e719-aaaa-4c1f-b64a-1ab0b9f3b4c0)
 
@@ -78,6 +81,8 @@ or else littleredrooster won't do the thing._
 - I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
 
 - littleredrooster can now select from multiple espisodes/ versions/ files within a torrent; but will close after that episode plays. So after each episode you have to select the torrent again and reselect the file, which is very quick to do, but an extra step... I am adding more robust episode selection features soon (Next, previous, replay, select from list, and keep the selection screens open after the file is done, etc).
+
+- Better filtering, only show mp4, avi, mv, mp3, wav etc etc etc.
 
 <p></p>
 <p></p>
