@@ -1,10 +1,6 @@
 **tordl+littleredrooster**
 
-
-
-
 ![Screenshot_20240825_180555](https://github.com/user-attachments/assets/676cbef7-b1c3-4236-a408-9632fedce318)
-
 
 About
 -----
@@ -54,14 +50,26 @@ or else littleredrooster won't do the thing._
 
 4. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
 
-5. The user will then select which file from the torrent they want within the list and then littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
+![Screenshot_20240825_181156](https://github.com/user-attachments/assets/c6b95aba-6403-47e8-897d-9a34e5994343)
 
-6. If the user enters `y` then mpv will open and begin playing the content. If the user selects `n`, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to display available files from the torrent.
+5. The user will then enter the number of for associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
+
+![Screenshot_20240825_173745](https://github.com/user-attachments/assets/2292e719-aaaa-4c1f-b64a-1ab0b9f3b4c0)
+
+6. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin' and close.
 
 8. If the torrent is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
+![Screenshot_20240825_181610](https://github.com/user-attachments/assets/4e9a74a5-d104-466e-854f-70914dad3455)
+
+
+
+
 <p></p>
 <p></p>
+
+
+
 
 **FUTURE PLANS**
 
@@ -77,7 +85,6 @@ or else littleredrooster won't do the thing._
 
 
 
-![Screenshot_20240825_173745](https://github.com/user-attachments/assets/5af60aa0-3d8c-4e73-8602-a38ea8cff89f)
 
 
 Installation
