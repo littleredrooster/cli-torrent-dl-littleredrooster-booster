@@ -1,26 +1,5 @@
 **tordl+littleredrooster**
 
-About
------
-
-FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X 
--This version retains the fixes mindhuntr made to Dl1337x and adds my littleredrooster script, which checks if a selected file from tordl is already avail on AllDebrid. If the file is already avail, littleredrooster will stream it through mpv.
-
-This is a hobby, I've enjoyed tordl for a while now and am using it as a platform to learn and sharpen my beak.
-You can use both tordl and littleredrooster as standalone command line interactions, though tbh tordl is the star of this show. 
-But, with tordl+littleredrooster, imo it brings everything together with little as this script does. 
-
-As of writing this, I haven't really altered tordl at all... yet.. Probably first will add more sources/ search engines. There's instructions on how to do so for your self in the original documentation below, though it's sparse and I'd like to add to it later. 
-That being said, my contribution will primarily be littleredrooster. I will say, I have altered the config file for tordl to use littleredrooster by default when selecting a file.
-
-
-littleredrooster is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
-
-
-<p></p>
-<p></p>
-
-
 **TORDL**
 -----
 
@@ -34,7 +13,7 @@ default) through command line.
 **LITTLE RED ROOSTER BOOSTER** 
 -----
 
-Little Red Rooster Booster is extremenly simple and has absolutely no interaction with the user other than asking `y` or `n` -to stream the content or not (if the file provided by tordl is already present on AllDebrid). 
+Little Red Rooster Booster is extremenly simple. All it does is check if a selected torrent from tordl is already avail on AllDebrid. If the torrent is already avail, littleredrooster will ask which file you'd like to play from the torrent and streams it through mpv using your AllDebrid account.
 
 <p></p>
 
@@ -43,38 +22,35 @@ _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
 -The log file and your API key MUST BOTH be manually configured in the littleredrooster script, 
 or else littleredrooster won't do the thing._
 
-**LIMITATIONS**
-
-littleredrooster is dumb and simple like a little rooster. It's such a simple script, that you can only play one file at a time right now. Seasons of shows packaged into one magnet link WILL be added to your AllDebrid account regaurdless, but littleredrooster won't automatically play through all of the episodes. It only plays the first video file it grabs from the "links" array in the json output from the API response. But soon I will add the ability to run whole seasons of shows link by link automatically, or select specific episode.
-
-
 
 **HOW IT ALL WORKS**
 ----
 
 1. Once you find the torrent you want with tordl, press enter to select it from within the tordl cli interface.
 
-2. tordl will then invoke littleredrooster, which will open a terminal where littleredrooster will use the magnet link from tordl to check if that file is already avail to instant stream from AllDebrid right away. 
+2. tordl will then invoke littleredrooster, which will open a terminal where littleredrooster will use the magnet link from tordl to check if that torrent is already avail to instant stream from AllDebrid right away. 
 
-4. If the file is already avail for instant streaming, AllDebrid will return a streaming link and liitleredrooster will ask if the user would like to b'gawk the jawn.
+4. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
 
-5. If the user selects `y` to b'gawk the jawn, then liitleredrooster will automatically open mpv and begin b'gawk-in. 
+5. The user will then select which file from the torrent they want within the list and then littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
 
-6. If the user selects `n` to NOT b'gawk the jawn, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to check if you can instant stream the file right away. 
+6. If the user enters `y` then mpv will open and begin playing the content. If the user selects `n`, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin'. Worth noting, link will be 'rooster boosted' whether the user selects `y` or `n`. This is required, otherwise you wouldn't be able to display available files from the torrent.
 
-7. If the file is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
+8. If the torrent is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
 <p></p>
 <p></p>
 
 **FUTURE PLANS**
 
-I would like to eventually add an interaction where; if the file is unavail on AllDebrid already for instant stream, littleredrooster would ask if you'd like to add the magnet link anyhow to your AllDebrid account, so AllDebrid can download it. However, I don't think that's worth it. 
-This is because, I want to add more sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. 
-<p></p>
-A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection -even though it's easier). 
-I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
+- I want to add more sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
 
+- I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
+
+- littleredrooster can now select from multiple espisodes/ versions/ files within a torrent; but will close after that episode plays. So after each episode you have to select the torrent again and reselect the file, which is very quick to do, but an extra step... I am adding more robust episode selection features soon (Next, previous, replay, select from list, and keep the selection screens open after the file is done, etc).
+
+<p></p>
+<p></p>
 
 Installation
 ------------
@@ -93,6 +69,9 @@ Installation
 Edit `~/.config/torrentdl/config.json` to customize your preferred torrent 
 client (default is littleredrooster).
 
+<p></p>
+<p></p>
+
 ### littleredrooster
 
 1. Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
@@ -110,7 +89,18 @@ client (default is littleredrooster).
    correct on line 4 of the script.
 
 
+**littleredroster filters files via exclusion: (line 73)**
 
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
+
+you can add to or remove from these extentions to get better control of returned files within a torrent. It isn't perfect, but it works most of the time.
+
+If you want to see ALL files withinin the torrents (no filters) use:
+
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
+
+
+<p></p>
 
 
 Docker
