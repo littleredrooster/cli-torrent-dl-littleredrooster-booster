@@ -75,9 +75,9 @@ or else littleredrooster won't do the thing._
 
 **FUTURE PLANS**
 
-- I want to add more sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
+- More sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
 
-- I also would like an optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
+- Optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc.
 
 - littleredrooster can now select from multiple espisodes/ versions/ files within a torrent; but will close after that episode plays. So after each episode you have to select the torrent again and reselect the file, which is very quick to do, but an extra step... I am adding more robust episode selection features soon (Next, previous, replay, select from list, and keep the selection screens open after the file is done, etc).
 
