@@ -129,20 +129,6 @@ client (default is littleredrooster).
    correct on line 4 as well as lines 415, 416, and 417 of the script.
 
 
-**Filtering torrent files with littleredrooster: (line 73)**
-
-Currently written as (shows all files within a torrent): 
-
-`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
-
-But I've been experimenting with (works... but not always): 
-
-`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
-
-
-Similarly, this one gets the same result, but from the opposite approach:
-
-`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.(mp4|mkv|avi|mov|wmv|flv)(?!.+)")) | .link'))`
 
 <p></p>
 
@@ -177,6 +163,22 @@ Invoke littleredrooster manually:
 OR
 
 `/path/to/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
+
+**Filtering torrent files with littleredrooster: (line 73)**
+
+Currently written as (shows all files within a torrent): 
+
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))`
+
+But I've been experimenting with (works... but not always): 
+
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
+
+
+Similarly, this one gets the same result, but from the opposite approach:
+
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.(mp4|mkv|avi|mov|wmv|flv)(?!.+)")) | .link'))`
+
 
 <p></p>
 <p></p>
