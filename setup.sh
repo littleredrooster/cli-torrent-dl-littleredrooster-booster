@@ -21,7 +21,7 @@ while [[ -h $SOURCE ]]; do
     [[ $SOURCE = /* ]] || SOURCE="$SCRIPT_DIR/$SOURCE"
 done
 
-# Check if $HOME/.local/bin is in the user's $PATH
+# This seems more like a fallback
 if [[ $PATH =~ "$HOME/.local/bin" ]]; then
     BIN_TORDL="$HOME/.local/bin/tordl"
     BIN_CLUCKIN="$HOME/.local/bin/littleredrooster"
@@ -31,15 +31,12 @@ if [[ $PATH =~ "$HOME/.local/bin" ]]; then
 else
     BIN_TORDL='/usr/local/bin/tordl'
     BIN_CLUCKIN='/usr/local/bin/littleredrooster'
-    # Use sudo for the commands if the bin directories are under /usr/local/bin
+    # On my system it always defaults to to this one
       LN_CMD_TORDL=('sudo' "${LN_CMD_TORDL[@]}" "$BIN_TORDL")
       LN_CMD_JAWN=('sudo' "${LN_CMD_JAWN[@]}" "$BIN_CLUCKIN")
     BIN_DIR_SUDO=1
 fi
 
-
-
-# Execute the ln commands using eval
 eval "${LN_CMD_TORDL[@]}"
 eval "${LN_CMD_JAWN[@]}"
 
@@ -84,7 +81,7 @@ for i in "$@"; do
    esac
 done
 
-# Uninstall tordl from the System
+# Uninstall tordl + littleredrooster from the System
 if (( $UNINSTALL == 1 )); then
   printf "${C_GREEN}Uninstalling tordl + littleredrooster from the System...${C_NONE}\n"
 
@@ -213,3 +210,8 @@ echo -e "
 
 echo -e "
            \033[1m\033[5m*peck*\033[0m Congrats, you're a degenerate now. \033[1m\033[5m*peck*\033[0m"
+
+# I removed the whole choice to bind to /usr/local/ bin or /.local/bin because it wasn't doing anything. 
+# The if command above was defaulting to the /usr/local/bin folder before the user was presented with the option... 
+# I don't know why that is...
+# But I DO know that I can work on it later..
