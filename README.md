@@ -106,7 +106,7 @@ Installation
 1. Configure the littleredrooster file:
    Put your API key in the 5 spots labeled: `YOUR_API_KEY`.
 
-2. Navigate to the downloaded folder and run `./setup.sh` -You might have to run `sudo chmod +x ./setup.sh`
+2. Navigate to the downloaded folder and run `./setup.sh` -You might have to run `sudo chmod +x ./setup.sh` first.
 
 3. Edit `~/.config/torrentdl/config.json`:
 By default tordl will execute `x-terminal-emulator -e littleredrooster %s`, when a file is selected.
