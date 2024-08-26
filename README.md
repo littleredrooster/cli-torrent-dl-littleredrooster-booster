@@ -54,11 +54,11 @@ or else littleredrooster won't do the thing._
 
 ![Screenshot_20240825_181156](https://github.com/user-attachments/assets/c6b95aba-6403-47e8-897d-9a34e5994343)
 
-5. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn now.
+5. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn. It is at this point, the script also deletes the magnet link from your AllDebrid account, as it is no longer needed.
 
 ![Screenshot_20240825_173745](https://github.com/user-attachments/assets/2292e719-aaaa-4c1f-b64a-1ab0b9f3b4c0)
 
-6. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, then littleredrooster will inform you it has automatically added the magnet link to your AllDebrid account/ rooster boosted the guffin' and close.
+6. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, the user is offered to close the application or go back to the list of available files.
 
 8. If the torrent is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
@@ -75,13 +75,11 @@ or else littleredrooster won't do the thing._
 
 **FUTURE PLANS**
 
-- More sources/ search engines to tordl so the experience is a bit more consistent. I'd like more resolutions, formats, and language options. A few times I found the links that were unavail to instant stream; -I tried to add them from tordl to AllDebrid manually and there was a small chance they would fail. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
-
-- Optional feature that deletes magnet links from your AllDebrid account automatically once you've finished an episode/ season/ movie/ content, etc. 
+- More sources/ search engines to tordl so the experience is a bit more consistent. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
 
 - Offline library to save magnet links to peruse your favorites later. 
 
-- littleredrooster can now select from multiple espisodes/ versions/ files within a torrent; but will close after that episode plays. So after each episode you have to select the torrent again and reselect the file, which is very quick to do, but an extra step... I am adding more robust episode selection features soon (Next, previous, replay, select from list, and keep the selection screens open after the file is done, etc).
+- More robust episode selection features (Next, previous, replay, select from list, etc).
 
 - Better filtering, such as only show mp4, avi, mkv, mp3, wav etc etc etc.
 
@@ -130,7 +128,7 @@ client (default is littleredrooster).
    correct on line 4 of the script.
 
 
-**Filtering torrent files via exclusion: (line 73)**
+**Filtering torrent files with littleredrooster: (line 73)**
 
 Currently written as (shows all files within a torrent): 
 
@@ -140,6 +138,10 @@ But I've been experimenting with (works... but not always):
 
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
 
+
+Similarly, this one gets the same result, but from the opposite approach:
+
+`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.(mp4|mkv|avi|mov|wmv|flv)(?!.+)")) | .link'))`
 
 <p></p>
 
