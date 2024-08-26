@@ -30,7 +30,7 @@ default) through command line.
 **LITTLE RED ROOSTER BOOSTER** 
 -----
 
-Little Red Rooster Booster checks if a selected torrent from tordl is already avail on AllDebrid. If the torrent is already avail, littleredrooster will ask which file you'd like to play from the torrent and streams it through mpv using your AllDebrid account.
+Little Red Rooster Booster is a shell script that checks if a selected torrent from tordl is already avail on AllDebrid. If the torrent is already avail, littleredrooster will ask which file you'd like to play from the torrent and streams it through mpv using your AllDebrid account.
 
 <p></p>
 
@@ -127,7 +127,7 @@ client (default is littleredrooster).
 6. Configure the littleredrooster file:
    Put your API key in the 5 spots labeled: `YOUR_API_KEY`.
    IMPORTANT: Make sure the path to `littleredrooster.log` is
-   correct on line 4 as well as lines 415, 416, and 417 of the script.
+   correct on line 35 as well as lines 388, 389, and 390 of the script.
 
 
 
@@ -165,7 +165,7 @@ OR
 
 `/path/to/littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
 
-**Filtering torrent files with littleredrooster: (line 73)**
+**Filtering torrent files with littleredrooster: (line 103)**
 
 Currently written as (shows all files within a torrent): 
 
