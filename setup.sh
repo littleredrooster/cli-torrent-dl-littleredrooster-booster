@@ -212,4 +212,4 @@ echo -e "
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄⠀\e[0m"
 
 echo -e "
-         Congrats, you're a degenerate now. \033[1m\033[5m*peck*\033[0m"
+           \033[1m\033[5m*peck*\033[0m Congrats, you're a degenerate now. \033[1m\033[5m*peck*\033[0m"
