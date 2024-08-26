@@ -97,38 +97,29 @@ Installation
 ### Prerequisites
 
 * Python 3.8+
-* curl (littleredrooster)
-* jq (littleredrooster)
-* mpv (littleredrooster)
+* pip
+* virtualenv
+* curl
+* jq
+* mpv
 
-### tordl
+### tordl + littleredrooster
 
-       $ ./setup.sh
+1. Navigate to the downloaded folder and run `sudo chmod +x ./setup.sh` then `./setup.sh`
 
-Edit `~/.config/torrentdl/config.json` to customize your preferred torrent 
-client (default is littleredrooster).
+2. IMPORTANT: Edit `~/.config/torrentdl/config.json`
+By default tordl will execute `x-terminal-emulator -e littleredrooster %s`, when a file is selected.
+If you want to use a specific emulator of if x-terminal-emulator isn't openning your default emulator;
+change `x-terminal-emulator` in the tordl config.json to whatever termial emulator you use.
 
-<p></p>
-<p></p>
-
-
-### littleredrooster
-
-1. Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
-
-2. Place the littleredrooster file in your `/usr/local/bin` folder
-
-3. Place the `littleredrooster.log` file wherever you're going to place it.
-
-4. Edit the tordl config:
-   By default torld will execute `konsole -e littleredrooster %s`, when a file is selected.
-   You MUST change `konsole` in the tordl config.json to whatever termial you use.
-
-6. Configure the littleredrooster file:
+4. Configure the littleredrooster file:
    Put your API key in the 5 spots labeled: `YOUR_API_KEY`.
-   IMPORTANT: Make sure the path to `littleredrooster.log` is
-   correct on line 35 as well as lines 388, 389, and 390 of the script.
 
+
+Uninstall
+------------
+
+Navigate to the downloaded folder and run `./setup.sh --uninstall`
 
 
 <p></p>
