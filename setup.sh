@@ -188,6 +188,7 @@ pip3 install -r "$SCRIPT_DIR/requirements.txt"
 
 clear
 
+# Don't remove this or you'll screw up the whole jib
 sudo chmod +x ./littleredrooster.sh
 
 echo -e "
