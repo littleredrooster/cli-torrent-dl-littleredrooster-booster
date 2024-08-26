@@ -8,27 +8,40 @@ C_RED="\033[0;31m"
 C_GREEN="\033[0;32m"
 C_NONE="\033[0m"
 
-# Get path of this script, resolving all symlinks.
+# Get path of the dinga ding dang, dinga dang dong all symlinks
 SOURCE="${BASH_SOURCE[0]}"
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" > /dev/null 2>&1 && pwd)"
-LN_CMD=('ln' '-sf' "$SCRIPT_DIR/tordl.sh")
+
+LN_CMD_TORDL=('ln' '-sf' "$SCRIPT_DIR/tordl.sh")
+LN_CMD_JAWN=("ln" "-sf" "$SCRIPT_DIR/littleredrooster.sh")
 
 while [[ -h $SOURCE ]]; do
-	SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" > /dev/null 2>&1 && pwd)"
-	SOURCE="$(readlink "$SOURCE")"
-	[[ $SOURCE = /* ]] || SOURCE="$SCRIPT_DIR/$SOURCE"
+    SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" > /dev/null 2>&1 && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE = /* ]] || SOURCE="$SCRIPT_DIR/$SOURCE"
 done
 
+# Check if $HOME/.local/bin is in the user's $PATH
 if [[ $PATH =~ "$HOME/.local/bin" ]]; then
-    BIN_DIR="$HOME/.local/bin/tordl"
-	LN_CMD+=("$BIN_DIR")
-	BIN_DIR_SUDO=0
+    BIN_TORDL="$HOME/.local/bin/tordl"
+    BIN_CLUCKIN="$HOME/.local/bin/littleredrooster"
+      LN_CMD_TORDL+=("$BIN_TORDL")
+      LN_CMD_JAWN+=("$BIN_JAWN")
+    BIN_DIR_SUDO=0
 else
-    BIN_DIR='/usr/local/bin/tordl'
-	LN_CMD=('sudo' "${LN_CMD[@]}" "$BIN_DIR")
+    BIN_TORDL='/usr/local/bin/tordl'
+    BIN_CLUCKIN='/usr/local/bin/littleredrooster'
+    # Use sudo for the commands if the bin directories are under /usr/local/bin
+      LN_CMD_TORDL=('sudo' "${LN_CMD_TORDL[@]}" "$BIN_TORDL")
+      LN_CMD_JAWN=('sudo' "${LN_CMD_JAWN[@]}" "$BIN_CLUCKIN")
     BIN_DIR_SUDO=1
 fi
 
+
+
+# Execute the ln commands using eval
+eval "${LN_CMD_TORDL[@]}"
+eval "${LN_CMD_JAWN[@]}"
 
 XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/torrentdl"
 VENV_DIR="$XDG_CONFIG_DIR/.venv"
@@ -36,7 +49,10 @@ PYTHON_LATEST_VERSION=11
 PYTHON_MIN_VERSION=8
 PYTHON_DEFAULT_VERSION="$(python3 -V | tr -d '[A-Za-z]' | awk -F . '{print $2}')"
 UNINSTALL=0
-TORDL_BIN_PATH="${LN_CMD[${#LN_CMD[@]}-1]}"
+
+# HEN HOUSE BABY!
+TORDL_BIN_PATH="${LN_CMD_TORDL[${#LN_CMD_TORDL[@]}-1]}"
+JAWN_BIN_PATH="${LN_CMD_JAWN[${#LN_CMD_JAWN[@]}-1]}"
 
 function print_help {
     printf "${C_GREEN}-h   | --help${C_NONE}      : Print this help\n"
@@ -70,7 +86,7 @@ done
 
 # Uninstall tordl from the System
 if (( $UNINSTALL == 1 )); then
-  printf "${C_GREEN}Uninstalling tordl from the System...${C_NONE}\n"
+  printf "${C_GREEN}Uninstalling tordl + littleredrooster from the System...${C_NONE}\n"
 
   echo "Removing $XDG_CONFIG_DIR..."
   if [[ -e $XDG_CONFIG_DIR ]]; then
@@ -80,16 +96,30 @@ if (( $UNINSTALL == 1 )); then
     printf "${C_RED}Unable to remove Config Dir $XDG_CONFIG_DIR, does not exist${C_NONE}\n"
   fi
 
-  echo "Removing Binary Link $TORDL_BIN_PATH..."
+  echo "Removing $TORDL_BIN_PATH..."
   if [[ -e $TORDL_BIN_PATH ]]; then
     if (( "$BIN_DIR_SUDO" == 0 )); then
       rm $TORDL_BIN_PATH
     printf "${C_GREEN}${TORDL_BIN_PATH} Removed ${C_NONE}\n"
     else
       sudo rm $TORDL_BIN_PATH
+      printf "${C_GREEN}${TORDL_BIN_PATH} Removed ${C_NONE}\n"
     fi
   else
     printf "${C_RED}Unable to remove tordl bin Link $TORDL_BIN_PATH, does not exist${C_NONE}\n"
+  fi
+
+  echo "Removing $JAWN_BIN_PATH..."
+  if [[ -e $JAWN_BIN_PATH ]]; then
+    if (( "$BIN_DIR_SUDO" == 0 )); then
+      rm $JAWN_BIN_PATH
+    printf "${C_GREEN}${JAWN_BIN_PATH} Removed ${C_NONE}\n"
+    else
+      sudo rm $JAWN_BIN_PATH
+      printf "${C_GREEN}${JAWN_BIN_PATH} Removed ${C_NONE}\n"
+    fi
+  else
+    printf "${C_RED}Unable to remove littleredrooster bin Link $JAWN_BIN_PATH, does not exist${C_NONE}\n"
   fi
 
   exit 0
@@ -159,19 +189,27 @@ PS1=$PS1B
 . "$VENV_DIR/bin/activate"
 pip3 install -r "$SCRIPT_DIR/requirements.txt"
 
-while true; do
-	# This ugly expansion is to get the last elem of $LN_CMD in a more compatible way.
-	printf ${C_GREEN}
-	read -p "Do you want to link tordl.sh to $TORDL_BIN_PATH ? [Y/n]: " choice
-	printf ${C_NONE}
-	case "${choice,,}" in
-		''|'y')
-			"${LN_CMD[@]}"
-			printf "${C_GREEN}tordl successfully linked 'tordl' or 'tordl SEARCH_TERM'${C_NONE}\n"
-			break
-		;;
-		'n')
-			break
-		;;
-	esac
-done
+clear
+
+echo -e "
+\e[31m
+
+    ⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣤⣴⣿⣧⣴⡆⠀⠀
+        ⠀⠀⠀⠀⠠⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢿⠟⢋⣡⢌⠉⠉⠀⠀⠀
+            ⠀⠀⠀⠙⢿⣿⣷⣦⢰⣧⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣷⠺⠿⢷⡀⠀⠀
+        ⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⠐⣶⡀⠀⠀⠀
+        ⠀⠀⠁⣠⠶⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⢀⣼⣿⣿⣦⣈⡁⠀⠀⠀
+        ⠀⠀⠀⠀⢠⣾⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⠀⡾⠿⢿⣿⢿⣿⣿⣷⠀⠀⠀
+    ⠀    ⠀⠀⠀⠘⠁⣴⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣤⡄⠘⢁⠘⠏⣁⠛⠀⠀⠀
+           ⠀⠀⠀⠀⠀⠀⡿⠁⢾⡟⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣷⣴⣿⡄⣴⣿⠀⠀⠀⠀
+    ⠀          ⠀⠀⠀⠀⠀⠘⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀
+    ⠀               ⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀
+             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣠⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄⠀\e[0m"
+
+echo -e "
+         Congrats, you're a degenerate now. \033[1m\033[5m*peck*\033[0m"
