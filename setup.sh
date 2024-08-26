@@ -26,7 +26,7 @@ if [[ $PATH =~ "$HOME/.local/bin" ]]; then
     BIN_TORDL="$HOME/.local/bin/tordl"
     BIN_CLUCKIN="$HOME/.local/bin/littleredrooster"
       LN_CMD_TORDL+=("$BIN_TORDL")
-      LN_CMD_JAWN+=("$BIN_JAWN")
+      LN_CMD_JAWN+=("$BIN_CLUCKIN")
     BIN_DIR_SUDO=0
 else
     BIN_TORDL='/usr/local/bin/tordl'
