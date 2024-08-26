@@ -111,6 +111,7 @@ client (default is littleredrooster).
 <p></p>
 <p></p>
 
+
 ### littleredrooster
 
 1. Make sure you have mpv, jq, and curl installed. If not run `sudo apt install curl jq mpv`
@@ -180,8 +181,9 @@ Similarly, this one gets the same result, but from the opposite approach:
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.(mp4|mkv|avi|mov|wmv|flv)(?!.+)")) | .link'))`
 
 
-<p></p>
-<p></p>
+---
+
+
 
 **TORDL SPECIFIC**
 
