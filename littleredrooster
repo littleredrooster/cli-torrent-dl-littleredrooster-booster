@@ -32,7 +32,7 @@
 #⠀⠀⠀⣠⣾⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠤⠴⠋⠀
 #⠀⣠⣾⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 # Log file and output
-exec &> >(tee /home/agent/littleredrooster.log)
+exec &> >(tee /tmp/littleredrooster.log)
 
 # Retrieve the magnet link
 magnet_link="$1"
@@ -200,7 +200,6 @@ AllDebrid API response for streaming URL:"
 echo "$streaming_response
 
 "
-
 # Extract the streaming url from the jawn url
 streaming_url=$(echo "$streaming_response" | grep -Pzo "(?s)\{.*" | jq -r '.data.link')
 
@@ -386,9 +385,9 @@ fi
 
         clear
         # boop the bawk
-        rm /home/agent/littleredrooster.log
-        touch /home/agent/littleredrooster.log
-        exec &> >(tee /home/agent/littleredrooster.log)
+        rm /tmp/littleredrooster.log
+        touch /tmp/littleredrooster.log
+        exec &> >(tee /tmp/littleredrooster.log)
 
 
         # But it's the pelvic thrust that really drives you insane...
