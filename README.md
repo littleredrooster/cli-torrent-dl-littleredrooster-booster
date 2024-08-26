@@ -111,7 +111,10 @@ Installation
 3. Edit `~/.config/torrentdl/config.json`:
 By default tordl will execute `x-terminal-emulator -e littleredrooster %s`, when a file is selected.
 If you want to use a specific emulator of if tordl isn't openning your prefered emulator by default;
-change `x-terminal-emulator` in the tordl config.json to whatever termial emulator you use. 
+change `x-terminal-emulator` in the tordl config.json to whatever termial emulator you use.
+
+
+![Screenshot_20240826_173258](https://github.com/user-attachments/assets/4ee26462-77f1-43e6-9eba-739cef0fb768)
 
 
 Uninstall
