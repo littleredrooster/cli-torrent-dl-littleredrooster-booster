@@ -19,12 +19,12 @@ echo "Alldebrid API response for instant availability check:
 $instant_response
 "
 # Instant avail truse/ false
-instant_bool=$(echo $instant_response | jq -r '.data.magnets[0].instant')
+instant_bawk=$(echo $instant_response | jq -r '.data.magnets[0].instant')
 
 
 # Log the Instant avail status
 echo "AllDebrid:
-$instant_bool
+$instant_bawk
 "
 
 # If jawn is available
@@ -70,8 +70,9 @@ echo "$file_response
 
 "
 
-# Filter out non video jawns from the json
+# Eventually filter out non video jawns from the json
 file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[].link'))
+
 
 
 # parse file names for jawn selection
@@ -127,13 +128,13 @@ echo -e "
 
 
 # List header
-your_text="\033[1m\033[4mExtracted jawn(s):\033[0m"
+list="\033[1m\033[4mExtracted jawn(s):\033[0m"
 terminal_width=$(tput cols)
-plain_text="Extracted jawn(s):"
-text_length=${#plain_text}
+jawn_text="Extracted jawn(s):"
+text_length=${#jawn_text}
 padding=$(( (terminal_width - text_length) / 2 ))
 printf "%*s" $padding ""
-echo -e "$your_text"
+echo -e "$list"
 
 
 # Line Break
@@ -141,7 +142,6 @@ echo "
 "
 
 # List of jawns
-
 index=1
 for ((i = 0; i < ${#file_urls[@]}; i++)); do
     file_name=$(echo "$file_response" | jq -r ".data.magnets.links[$i].filename")
@@ -209,10 +209,10 @@ echo -e "
 ⠀⠀            ⠀⠀     ⠀⣀⡤⣴⣶⠞⠋⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠈⠉⠉⠙⠻⢿⣿⣗⡢⢤⣀
 ⠀⠀⠀                 ⣠⢊⣵⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⢭⣳⣮⣳⣄
     ⠀            ⠀⣼⣿⠏⠀ ⠀⠀                          ⠙⢿⣮⡙⢷⡄
-        ⠀        ⣼⡿⠁⠀ ⠀⠀⠀It's like I told ya-      ⠀ ⠈⠻⣟⢦⠙⢦⡀
+        ⠀        ⣼⡿⠁⠀ ⠀⠀'It's like I told ya-      ⠀ ⠈⠻⣟⢦⠙⢦⡀
                 ⠀⣿                  what I said...     ⠈⢯⡳⣄⢻⢦
                 ⢸⡟       Steal your face                 ⠹⣾⣾⡄⢳
-                ⢸⡇⠀        right off'uh your head         ⢻⣻⡇⠀⡇
+                ⢸⡇⠀        right off'uh your head-'       ⢻⣻⡇⠀⡇
                 ⢸⣿⡄                                      ⠀⣿⡗⠀⣿
                 ⠀⢧⠹⡄                                   ⠀⢀⣾⡇⠀⡏
                 ⠀⠈⢢⣘⢢⡀         ⠀                       ⢠⣾⡟⠀⡼⠁
@@ -287,7 +287,7 @@ echo -e "
 else
 
 
-    # this means your magnet link is junk, pink a new one
+    # this means your magnet link is junk, pick a new one
     echo -e "
 
     \033[1m*buh'\033[0m\033[1m\033[3mGAAWWWWKKK*\033[0m
@@ -316,7 +316,6 @@ else
 
 
     Don't you EVER suggest this magnet link again you little pop-tart.
-    Don't even think about it....
     I can't even \033[3mlook\033[0m at you...... \033[1m*BAWK*\033[0m" && sleep 10
 
 fi
