@@ -188,6 +188,8 @@ pip3 install -r "$SCRIPT_DIR/requirements.txt"
 
 clear
 
+sudo chmod +x ./littleredrooster.sh
+
 echo -e "
 \e[31m
 
