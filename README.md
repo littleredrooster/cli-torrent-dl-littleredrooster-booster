@@ -124,8 +124,9 @@ client (default is littleredrooster).
    You MUST change `konsole` in the tordl config.json to whatever termial you use.
 
 6. Configure the littleredrooster file:
-   Put your API key in the 4 spots labeled: `YOUR_API_KEY`. Make sure the path to the `littleredrooster.log` file is
-   correct on line 4 of the script.
+   Put your API key in the 5 spots labeled: `YOUR_API_KEY`.
+   IMPORTANT: Make sure the path to `littleredrooster.log` is
+   correct on line 4 as well as lines 415, 416, and 417 of the script.
 
 
 **Filtering torrent files with littleredrooster: (line 73)**
