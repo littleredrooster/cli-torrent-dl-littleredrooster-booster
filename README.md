@@ -175,12 +175,6 @@ But I've been experimenting with (works... but not always):
 
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
 
-
-Similarly, this one gets the same result, but from the opposite approach:
-
-`file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.(mp4|mkv|avi|mov|wmv|flv)(?!.+)")) | .link'))`
-
-
 ---
 
 
