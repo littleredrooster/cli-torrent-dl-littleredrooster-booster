@@ -75,7 +75,7 @@ or else littleredrooster won't do the thing._
 
 **FUTURE PLANS**
 
-- More sources/ search engines to tordl so the experience is a bit more consistent. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (insted of with littleredrooster after the user makes a selection).
+- More sources/ search engines to tordl so the experience is a bit more consistent. With enough sources it casts a wide enough net, where eventually it could be made so the user could check torrents for AllDebrid availability using tordl AT user search (instead of with littleredrooster after the user makes a selection).
 
 - Offline library to save magnet links to peruse your favorites later. 
 
