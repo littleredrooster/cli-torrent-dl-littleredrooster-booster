@@ -2,7 +2,7 @@
 
 
 
-About
+ABOUT
 -----
 
 
@@ -45,25 +45,25 @@ or else littleredrooster won't do the thing._
 **HOW IT ALL WORKS**
 ----
 
-1. Once you find the torrent you want with tordl, press enter to select it from within the tordl cli interface.
+1. Once you find the torrent you want with tordl, press enter and tordl will then invoke littleredrooster, which will use the magnet link from tordl to check if that torrent is already avail to instant stream from AllDebrid right away.
 
-2. tordl will then invoke littleredrooster, which will open a terminal where littleredrooster will use the magnet link from tordl to check if that torrent is already avail to instant stream from AllDebrid right away. 
+2. If the torrent is already avail for instant streaming right away, littleredrooster will return a list of available files from that torrent. 
+
+3. The user will then enter the number for the associated file they want and mpv will open and begin playing the content.
+   It is at this point, the script also deletes the no-longer needed magnet link from your AllDebrid account.
+
+
+
 
 ![Screenshot_20240825_180555](https://github.com/user-attachments/assets/676cbef7-b1c3-4236-a408-9632fedce318)
 
 
-3. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
-   If not, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
+
 
 ![Screenshot_20240825_181156](https://github.com/user-attachments/assets/c6b95aba-6403-47e8-897d-9a34e5994343)
 
-4. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn. It is at this point, the script also deletes the magnet link from your AllDebrid account, as it is no longer needed.
 
-![Screenshot_20240825_173745](https://github.com/user-attachments/assets/2292e719-aaaa-4c1f-b64a-1ab0b9f3b4c0)
-
-5. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, the user is offered to close the application or go back to the list of available files.
-
-
+**NOTE:** If a link is not avail from AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing.
 
 <p></p>
 <p></p>
@@ -79,7 +79,10 @@ or else littleredrooster won't do the thing._
 
 - More robust episode selection features (Next, previous, replay, select from list, etc).
 
-- Better filtering, such as only show mp4, avi, mkv, mp3, wav etc etc etc.
+- Blacklist a magnet link key; there is already some functionality in tordl to exclude sorces, but I'd like a key press for removing specific magnet links. Particularly useful for littleredrooster when going through many torrent files.
+
+- Better filtering for the files WITHIN a torrent, such as only show mp4, avi, mkv, mp3, wav - etc etc etc.
+  This would be to avoid populating littleredrooster with non media content such as exe or txt files.
 
 <p></p>
 <p></p>
@@ -125,33 +128,11 @@ Uninstall
 Navigate to the downloaded folder and run `./setup.sh --uninstall`
 
 
-<p></p>
+littleredrooster cli
+---
 
-
-Docker
-------
-
-Opening magnet links in your preferred torrent client will not work, of course.
-
-**Build**
-
-    $ docker build . -t tordl
-
-**Run JSON RPC Server**
-
-    $ docker run -p 57000:57000 -it tordl -s
-
-
-
-Usage
------
-
-
-### CLI
-
-**LITTLEREDROOSTER SPECIFIC** 
-<p></p>
-Invoke littleredrooster manually:
+Out of the box, littleredrooster is by default automatically run by tordl whenever selecting a torrent.
+But you can also invoke littleredrooster manually:
 
 `littleredrooster "magnet:?xt=urn:btih:487B57A38963B9C0BACD24tq34......."`
 
@@ -169,11 +150,10 @@ But I've been experimenting with (works... but not always):
 
 `file_urls=($(echo "$file_response" | jq -r '.data.magnets.links[] | select(.filename | test("^.*\\.((?! doc|docx|pdf|srt|exe|txt|rtf|csv|log|ini|cfg|jpg|png|gif|webp|bmp|svg|mp3|wav|ogg|flac|aac|html|php|js|css|sh|zip|rar|7z|tar|gz|json|yml|xml|py|java|go|php|com).)*$")) | .link'))`
 
+
+
+tordl cli
 ---
-
-
-
-**TORDL SPECIFIC**
 
 Run search from command line:
 
@@ -248,6 +228,21 @@ one RPC method `search` which expects array of one argument - the search term.
 #### RPC Client
 
 Run with `-q` or `--rpc-client`, see `-h` for setting connection details.
+
+
+tordl Docker
+------
+
+Opening magnet links with littleredrooster or your preferred torrent client will not work with this.
+
+**Build**
+
+    $ docker build . -t tordl
+
+**Run JSON RPC Server**
+
+    $ docker run -p 57000:57000 -it tordl -s
+
 
 JSON Output Format
 ------------------
