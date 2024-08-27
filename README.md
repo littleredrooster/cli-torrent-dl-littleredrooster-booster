@@ -8,7 +8,9 @@ About
 
 -This version of tordl FORKED from https://github.com/mindhuntr/cli-torrent-dl who forked it from https://github.com/mindhuntr/cli-torrent-dl/commits?author=X0R0X -retains the fixes mindhuntr made to Dl1337x + adds my nifty littleredrooster script. 
 
-As of writing this, I haven't really altered tordl at all... yet.. That being said, my contribution will primarily be littleredrooster.
+This is purely a vehicle for learning and experimentation to me. My primary contribution will be littleredrooster, 
+but I'll be messing with tordl as well over time.
+
 This is the first script I've ever put out there, so hopefully you're b'gawkin' without issues.
 
 <p></p>
@@ -50,27 +52,23 @@ or else littleredrooster won't do the thing._
 ![Screenshot_20240825_180555](https://github.com/user-attachments/assets/676cbef7-b1c3-4236-a408-9632fedce318)
 
 
-4. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
+3. If the torrent is already avail for instant streaming right away, AllDebrid will return a list of available files from that torrent.
+   If not, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
 
 ![Screenshot_20240825_181156](https://github.com/user-attachments/assets/c6b95aba-6403-47e8-897d-9a34e5994343)
 
-5. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn. It is at this point, the script also deletes the magnet link from your AllDebrid account, as it is no longer needed.
+4. The user will then enter the number for the associated file they want and littleredrooster will ask `y` or `n` to continue/ b'gawk the jawn. It is at this point, the script also deletes the magnet link from your AllDebrid account, as it is no longer needed.
 
 ![Screenshot_20240825_173745](https://github.com/user-attachments/assets/2292e719-aaaa-4c1f-b64a-1ab0b9f3b4c0)
 
-6. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, the user is offered to close the application or go back to the list of available files.
-
-8. If the torrent is not already avail to instant stream through AllDebrid, littleredrooster will return angry b'gawks, peck at you, and then insult you for your life choices before closing. 
-
-![Screenshot_20240825_181610](https://github.com/user-attachments/assets/4e9a74a5-d104-466e-854f-70914dad3455)
-
+5. If the user enters `y` then mpv will open and begin playing the content. If the user enters `n`, the user is offered to close the application or go back to the list of available files.
 
 
 
 <p></p>
 <p></p>
 
-
+---
 
 
 **FUTURE PLANS**
@@ -104,14 +102,18 @@ Installation
 * mpv
 
 1. Configure the littleredrooster file:
-   Put your API key in the 5 spots labeled: `YOUR_API_KEY`.
+   Put your AllDebrid API key in the 5 spots labeled: `YOUR_API_KEY`.
 
 2. Navigate to the downloaded folder and run `./setup.sh` -You might have to run `sudo chmod +x ./setup.sh` first.
 
-3. Edit `~/.config/torrentdl/config.json`:
-By default tordl will execute `x-terminal-emulator -e littleredrooster %s`, when a file is selected.
-If you want to use a specific emulator of if tordl isn't openning your prefered emulator by default;
-change `x-terminal-emulator` in the tordl config.json to whatever termial emulator you use.
+
+**Optional**
+
+Edit `~/.config/torrentdl/config.json`:
+
+By default tordl will execute `x-terminal-emulator -e littleredrooster %s` when a file is selected.
+If tordl isn't openning your prefered emulator by default; change `x-terminal-emulator` 
+in the tordl config.json to your preferred emulator.
 
 
 ![Screenshot_20240826_173258](https://github.com/user-attachments/assets/4ee26462-77f1-43e6-9eba-739cef0fb768)
@@ -131,11 +133,11 @@ Docker
 
 Opening magnet links in your preferred torrent client will not work, of course.
 
-### Build
+**Build**
 
     $ docker build . -t tordl
 
-### Run JSON RPC Server
+**Run JSON RPC Server**
 
     $ docker run -p 57000:57000 -it tordl -s
 
