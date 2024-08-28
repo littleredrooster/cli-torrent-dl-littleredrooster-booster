@@ -38,7 +38,7 @@ Little Red Rooster Booster is a shell script that checks if a selected torrent f
 
 **NOTE:**
 _YOU MUST HAVE AN API KEY FROM ALLDEBRID OR THIS WILL NOT WORK!
--The log file and your API key MUST BOTH be manually configured in the littleredrooster script, 
+-The log file and your API key MUST be manually configured in the littleredrooster script, 
 or else littleredrooster won't do the thing._
 
 
@@ -47,9 +47,9 @@ or else littleredrooster won't do the thing._
 
 1. Once you find the torrent you want with tordl, press enter and tordl will then invoke littleredrooster, which will use the magnet link from tordl to check if that torrent is already avail to instant stream from AllDebrid right away.
 
-2. If the torrent is already avail for instant streaming right away, littleredrooster will return a list of available files from that torrent. 
+2. If the torrent is already avail for instant streaming, littleredrooster will return a list of available files from that torrent. 
 
-3. The user will then enter the number for the associated file they want and mpv will open and begin playing the content.
+3. The user can then enter the number for the associated file they are interested in and mpv will open and begin streaming the content.
    It is at this point, the script also deletes the no-longer needed magnet link from your AllDebrid account.
 
 
